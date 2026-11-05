@@ -1,0 +1,54 @@
+# --- Unidades organizativas ---
+dn: ou=people,dc=workshop,dc=local
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=workshop,dc=local
+objectClass: organizationalUnit
+ou: groups
+
+# --- Usuarios ---
+dn: uid=ana.mora,ou=people,dc=workshop,dc=local
+objectClass: inetOrgPerson
+uid: ana.mora
+cn: Ana Mora
+givenName: Ana
+sn: Mora
+mail: ana.mora@workshop.local
+title: Docente
+telephoneNumber: +506 2222-0001
+userPassword: Ana12345
+
+dn: uid=luis.vargas,ou=people,dc=workshop,dc=local
+objectClass: inetOrgPerson
+uid: luis.vargas
+cn: Luis Vargas
+givenName: Luis
+sn: Vargas
+mail: luis.vargas@workshop.local
+title: Estudiante
+telephoneNumber: +506 2222-0002
+userPassword: Luis12345
+
+dn: uid=sofia.rojas,ou=people,dc=workshop,dc=local
+objectClass: inetOrgPerson
+uid: sofia.rojas
+cn: Sofia Rojas
+givenName: Sofia
+sn: Rojas
+mail: sofia.rojas@workshop.local
+title: Estudiante
+telephoneNumber: +506 2222-0003
+userPassword: Sofia12345
+
+# --- Grupos ---
+dn: cn=docentes,ou=groups,dc=workshop,dc=local
+objectClass: groupOfNames
+cn: docentes
+member: uid=ana.mora,ou=people,dc=workshop,dc=local
+
+dn: cn=estudiantes,ou=groups,dc=workshop,dc=local
+objectClass: groupOfNames
+cn: estudiantes
+member: uid=luis.vargas,ou=people,dc=workshop,dc=local
+member: uid=sofia.rojas,ou=people,dc=workshop,dc=local
