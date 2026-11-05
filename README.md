@@ -1,8 +1,8 @@
 # Workshop: Contenedores con Docker + Directorios con LDAP
 
 **Demostración:** WordPress en Docker autenticando/consultando usuarios de un servidor OpenLDAP en Docker.
-**Público:** estudiantes con conocimientos básicos de Linux (terminal, rutas, permisos, editar archivos).
-**Duración sugerida:** 3 horas (90 min teoría + 90 min laboratorio).
+**Requerimientos:** conocimientos básicos de Linux (terminal, rutas, permisos, editar archivos).
+**Duración aproximada:** 2 horas (60 min teoría + 60 min laboratorio).
 
 ---
 
@@ -25,14 +25,14 @@
 
 ## 1. Objetivos
 
-Al terminar, el estudiante podrá:
+Al terminar, podremos:
 
-- Explicar la diferencia entre **imagen**, **contenedor**, **volumen** y **red** en Docker.
+- Comprender la diferencia entre **imagen**, **contenedor**, **volumen** y **red** en Docker.
 - Levantar un entorno multi-contenedor con **Docker Compose**.
-- Construir una imagen propia con un **Dockerfile** (extensión PHP `ldap`).
+- Construir una imagen propia con un **Dockerfile**.
 - Describir la estructura jerárquica de un directorio **LDAP** (DIT, DN, atributos, objectClass).
 - Cargar usuarios en OpenLDAP con un archivo **LDIF** y consultarlos con `ldapsearch`.
-- Conectar una aplicación real (WordPress) a un directorio LDAP.
+- Conectar una aplicación real (WordPress) para extraer datos usando LDAP.
 
 ---
 
@@ -61,6 +61,8 @@ flowchart TB
         E --- K2["Kernel Linux compartido + Hardware"]
     end
 ```
+
+Comparativa:  
 
 | Aspecto | Máquina virtual | Contenedor |
 |---|---|---|
