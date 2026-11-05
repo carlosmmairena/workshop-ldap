@@ -176,7 +176,7 @@ flowchart LR
     DN["DN (Distinguished Name)<br/>uid=ana.mora,ou=people,dc=workshop,dc=local"]
     DN --> RDN["RDN: uid=ana.mora<br/>(nombre relativo, único en su rama)"]
     DN --> OC["objectClass: inetOrgPerson<br/>(define atributos obligatorios/permitidos)"]
-    DN --> AT["Atributos<br/>cn, sn, givenName, mail,<br/>title, telephoneNumber, userPassword"]
+    DN --> AT["Atributos<br/>cn, sn, givenName, mail,<br/>title, telephoneNumber,<br/>departmentNumber, userPassword"]
 ```
 
 | Sigla | Significado | Ejemplo |
@@ -366,6 +366,7 @@ sn: Mora
 mail: ana.mora@workshop.local
 title: Docente
 telephoneNumber: +506 2222-0001
+departmentNumber: Tecnologia
 userPassword: Ana12345
 
 dn: uid=luis.vargas,ou=people,dc=workshop,dc=local
@@ -377,6 +378,7 @@ sn: Vargas
 mail: luis.vargas@workshop.local
 title: Estudiante
 telephoneNumber: +506 2222-0002
+departmentNumber: Tecnologia
 userPassword: Luis12345
 
 dn: uid=sofia.rojas,ou=people,dc=workshop,dc=local
@@ -388,6 +390,7 @@ sn: Rojas
 mail: sofia.rojas@workshop.local
 title: Estudiante
 telephoneNumber: +506 2222-0003
+departmentNumber: Administracion
 userPassword: Sofia12345
 
 # --- Grupos ---
@@ -492,7 +495,7 @@ docker compose logs -f openldap       # Ctrl+C para salir
 docker exec openldap ldapsearch -x -H ldap://localhost \
   -b "ou=people,dc=workshop,dc=local" \
   -D "cn=admin,dc=workshop,dc=local" -w admin123 \
-  "(objectClass=inetOrgPerson)" uid cn mail title
+  "(objectClass=inetOrgPerson)" uid cn mail title departmentNumber
 
 # Probar que un usuario puede autenticarse (bind con su propio DN)
 docker exec openldap ldapwhoami -x -H ldap://localhost \
@@ -541,7 +544,11 @@ Valores de conexión (los nombres de los campos varían según el plugin):
 | Base DN | `ou=people,dc=workshop,dc=local` | Dónde buscar personas |
 | Filtro | `(objectClass=inetOrgPerson)` | Solo personas |
 | Atributo de usuario | `uid` | Identificador de login |
-| Atributos a mostrar | `cn`, `mail`, `title`, `telephoneNumber` | Datos del directorio |
+| Full name (nombre completo) | `cn` | Nombre de la persona |
+| Email | `mail` | Correo |
+| Job title (cargo) | `title` | Cargo o rol |
+| Department (departamento) | `departmentNumber` | Atributo estándar de `inetOrgPerson`; es el que permite agrupar |
+| Phone (teléfono) | `telephoneNumber` | Teléfono |
 
 > **Error típico:** escribir `localhost` como host. Dentro del contenedor `wordpress`, `localhost` es el propio contenedor de WordPress, no OpenLDAP.
 
@@ -559,6 +566,7 @@ cn: Pedro Solis
 sn: Solis
 mail: pedro.solis@workshop.local
 title: Estudiante
+departmentNumber: Administracion
 userPassword: Pedro12345
 EOF
 

@@ -3,6 +3,7 @@
 Guía práctica para seguir en vivo. En cada bloque lees una idea corta, ejecutas los comandos y confirmas que funcionó antes de avanzar. Para la teoría completa y el paso a paso detallado consulta [README_FULL.md](README_FULL.md).
 
 **Duración:** ~2 h 15 min, con una pausa.
+
 **Meta:** al final, un usuario que crees en LDAP aparecerá en WordPress sin que toques WordPress.
 
 ```mermaid
@@ -37,7 +38,7 @@ docker compose version
 docker run hello-world
 ```
 
-Debes ver `Hello from Docker!`. Si no, resuélvelo antes de la sesión (en Windows suele faltar WSL2 o la virtualización en la BIOS).
+Debes ver `Hello from Docker!`. Si no tienes instalado no funcionará.
 
 ### 2. Descarga las imágenes
 
@@ -133,7 +134,7 @@ Un archivo (`docker-compose.yml`) describe **todos** los servicios, redes y vol�
 
 Una **libreta de direcciones jerárquica**, optimizada para lectura, donde viven usuarios y grupos. Su valor: **una sola fuente de verdad para las identidades** de toda una organización.
 
-Este es el árbol que vamos a crear:
+Para una empresa que tiene un dominio "workshop.local", este es el árbol LDAP que vamos a crear:
 
 ```mermaid
 flowchart TB
@@ -216,7 +217,7 @@ Solo tres ideas hoy:
 docker exec openldap ldapsearch -x -H ldap://localhost \
   -b "ou=people,dc=workshop,dc=local" \
   -D "cn=admin,dc=workshop,dc=local" -w admin123 \
-  "(objectClass=inetOrgPerson)" uid cn mail title
+  "(objectClass=inetOrgPerson)" uid cn mail title departmentNumber
 ```
 
 **2. Busca solo a los docentes** (cambia el filtro):
@@ -389,7 +390,11 @@ El plugin necesita saber **dónde** está LDAP y **cómo** buscar. El error más
 | Base DN | `ou=people,dc=workshop,dc=local` |
 | Filtro | `(objectClass=inetOrgPerson)` |
 | Atributo de usuario | `uid` |
-| Atributos a mostrar | `cn`, `mail`, `title`, `telephoneNumber` |
+| Full name (nombre completo) | `cn` |
+| Email | `mail` |
+| Job title (cargo) | `title` |
+| Department (departamento) | `departmentNumber` |
+| Phone (teléfono) | `telephoneNumber` |
 
 3. Guarda y visualiza el directorio en tu sitio.
 
@@ -416,6 +421,7 @@ cn: Pedro Solis
 sn: Solis
 mail: pedro.solis@workshop.local
 title: Estudiante
+departmentNumber: Administracion
 userPassword: Pedro12345
 EOF
 

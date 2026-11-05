@@ -17,6 +17,7 @@ sn: Mora
 mail: ana.mora@workshop.local
 title: Docente
 telephoneNumber: +506 2222-0001
+departmentNumber: Tecnologia
 userPassword: Ana12345
 
 dn: uid=luis.vargas,ou=people,dc=workshop,dc=local
@@ -28,6 +29,7 @@ sn: Vargas
 mail: luis.vargas@workshop.local
 title: Estudiante
 telephoneNumber: +506 2222-0002
+departmentNumber: Tecnologia
 userPassword: Luis12345
 
 dn: uid=sofia.rojas,ou=people,dc=workshop,dc=local
@@ -39,6 +41,7 @@ sn: Rojas
 mail: sofia.rojas@workshop.local
 title: Estudiante
 telephoneNumber: +506 2222-0003
+departmentNumber: Administracion
 userPassword: Sofia12345
 
 # --- Grupos ---
