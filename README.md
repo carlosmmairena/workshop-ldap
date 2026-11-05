@@ -251,9 +251,9 @@ WordPress necesita base de datos. Por eso el esquema natural es de **3 contenedo
 | 3 | `wordpress` | Imagen propia basada en `wordpress:php8.3-apache` | Sitio web + plugin LDAP |
 | 4 *(opcional)* | `phpldapadmin` | `osixia/phpldapadmin:0.9.0` | Interfaz web para ver el árbol LDAP |
 
-**Variante de 2 contenedores:** WordPress + OpenLDAP usando el plugin oficial *SQLite Database Integration* en lugar de MariaDB. Funciona, pero añade un paso no estándar; recomendable solo si el tiempo es muy corto.
 
-> **Sobre la imagen de OpenLDAP (verificado nov-2026):** las imágenes `bitnami/openldap` dejaron de ser gratuitas en Docker Hub (agosto-septiembre 2025) y `bitnamilegacy/openldap` quedó congelada sin parches. `osixia/openldap:1.5.0` es antigua (OpenLDAP 2.4.57) pero es la más documentada y simple para docencia. **No usar en producción.** Alternativa mantenida: `vegardit/openldap` (variables de entorno distintas).
+
+> **Sobre la imagen de OpenLDAP (nov-2026):** las imágenes `bitnami/openldap` dejaron de ser gratuitas en Docker Hub (agosto-septiembre 2025) y `bitnamilegacy/openldap` quedó congelada sin parches. `osixia/openldap:1.5.0` es antigua (OpenLDAP 2.4.57) pero es la más documentada y simple para docencia. **No usar en producción.** Alternativa mantenida: `vegardit/openldap` (variables de entorno distintas).
 
 ### 4.2 Diagrama de arquitectura
 
