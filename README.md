@@ -385,8 +385,8 @@ El plugin necesita saber **dónde** está LDAP y **cómo** buscar. El error más
 | Puerto | `389` |
 | Usar TLS/SSL | No |
 | Versión del protocolo | 3 |
-| Bind DN | `cn=admin,dc=workshop,dc=local` |
-| Contraseña del Bind | `admin123` |
+| Bind DN | `cn=admin,dc=workshop,dc=local` (ver nota abajo) |
+| Bind Password | El valor de `LDAP_ADMIN_PASSWORD` en tu `.env` (por defecto `admin123`) |
 | Base DN | `ou=people,dc=workshop,dc=local` |
 | Filtro | `(objectClass=inetOrgPerson)` |
 | Atributo de usuario | `uid` |
@@ -395,6 +395,12 @@ El plugin necesita saber **dónde** está LDAP y **cómo** buscar. El error más
 | Job title (cargo) | `title` |
 | Department (departamento) | `departmentNumber` |
 | Phone (teléfono) | `telephoneNumber` |
+
+> **¿De dónde salen el Bind DN y el Bind Password?** Del archivo `.env`:
+> - **Bind DN** = usuario `cn=admin` + el dominio `LDAP_DOMAIN` convertido a componentes `dc`. Con `LDAP_DOMAIN=workshop.local` resulta `cn=admin,dc=workshop,dc=local`.
+> - **Bind Password** = el valor de `LDAP_ADMIN_PASSWORD`. Ábrelo con `grep LDAP_ADMIN_PASSWORD .env` y copia lo que aparece después del `=`.
+>
+> Si cambiaste `LDAP_DOMAIN` en tu `.env`, el Bind DN y el Base DN cambian con él.
 
 3. Guarda y visualiza el directorio en tu sitio.
 
